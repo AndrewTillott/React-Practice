@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React Basics</title>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            state = {
+                name: 'Ryu',
+                age: 30
+            }
+            handleClick(e){
+                //this would log what was clicked
+                console.log(e.target);
+
+                /* If you use an arrow function you can reference the compontent itself with "this" before the render */
+                //BOTH OF THESE WOULD GIVE ERRORS BECAUSE OF SCOPE
+               // console.log(this.state);
+               // console.log(this.state.age);
+            }
+            handleMouseOver=(e)=>{
+                console.log(e.target, e.pageX);
+                //this may no work because of the arrow functions
+                console.log(this.state);
+            }
+            handleCopy(e){
+                console.log('Try being original for once');
+                //change state of the name
+                this.setState({
+                    name: 'Yoshi'
+                })
+            }
+            render(){
+                return (
+                    <div className="app-content">
+                    <h1>Hey there</h1>
+                    <p>{Math.random()*10}</p>
+                    <p>My name is: {this.state.name} and I am {this.state.age}</p>
+                    {/* this (below) refers to the compontent which the function is stored in*/}
+                    {/* if you add parenteheses then it would fire as soon as the page loads*/}
+                    <button onClick={this.handleClick}>Click Me</button>
+                    <button onMouseOver={this.handleMouseOver}>Hover Me</button>
+                    <p onCopy={this.handleCopy}>What we think, we become</p>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
