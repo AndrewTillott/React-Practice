@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import Rainbow from '../higherOrderComponent/rainbow'
+
 
 const About = () =>{
     return (
@@ -12,4 +14,5 @@ const About = () =>{
     )
 }
 
-export default About;
+// now you can see that the component is wrapped from the higher order component, and therefore gets its special characteristics
+export default Rainbow(About);
