@@ -10,6 +10,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/home';
 import About from './components/about';
 import Contact from './components/contact';
+import Post from './components/post'
 
 class App extends Component {
   state = {
@@ -60,7 +61,8 @@ class App extends Component {
         <h1>My first React app</h1>
         <Ninjas deleteNinja={this.deleteNinja} ninjas={this.state.ninjas} />
         <AddNinja addNinja={this.addNinja} />
-    
+        {/*Notice hopw the parameter has a : prior to signify that it is a parameter*/}
+        <Route path="/:post_id" component={Post}/>
       </div>
       </BrowserRouter>
     );
