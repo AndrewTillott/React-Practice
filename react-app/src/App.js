@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Ninjas from './ninjas'
 import AddNinja from './addNinja';
 import Navbar from './components/navbar';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/home';
 import About from './components/about';
 import Contact from './components/contact';
@@ -55,14 +55,17 @@ class App extends Component {
       <BrowserRouter>
       <div className="App">
         <Navbar />
-        <Route path='/home' component={Home} />
-        <Route path='/about' component={About} />
-        <Route path='/contact' component={Contact} />
-        <h1>My first React app</h1>
-        <Ninjas deleteNinja={this.deleteNinja} ninjas={this.state.ninjas} />
-        <AddNinja addNinja={this.addNinja} />
-        {/*Notice hopw the parameter has a : prior to signify that it is a parameter*/}
-        <Route path="/:post_id" component={Post}/>
+        {/*Ensures that you only match one component route at a time e.g. so that you don't match /contact with /:post_id */}
+        <Switch>
+          <Route path='/home' component={Home} />
+          <Route path='/about' component={About} />
+          <Route path='/contact' component={Contact} />
+          <h1>My first React app</h1>
+          <Ninjas deleteNinja={this.deleteNinja} ninjas={this.state.ninjas} />
+          <AddNinja addNinja={this.addNinja} />
+          {/*Notice hopw the parameter has a : prior to signify that it is a parameter*/}
+          <Route path="/:post_id" component={Post}/>
+        </Switch>
       </div>
       </BrowserRouter>
     );
